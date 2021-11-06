@@ -29,38 +29,42 @@ def binary_search(element, numbers_list):
     return False
 
 
-def linear_time():
+def linear_time(n):
     SETUP_CODE = '''
 from __main__ import linear_search, prepare_data
 from random import randint'''
 
-    TEST_CODE = '''
-n = 10000
+    TEST_CODE = f'''
+n = {n}
 number_list = prepare_data(n)
 linear_search(randint(1, n), number_list)'''
     times = timeit.repeat(setup=SETUP_CODE,
                           stmt=TEST_CODE,
                           repeat=3,
                           number=100)
-    print(f'Linear search time: {min(times)}')
+    print(f'Linear search time: {sum(times)/len(times)}')
 
 
-def binary_time():
+def binary_time(n):
     SETUP_CODE = '''
 from __main__ import binary_search, prepare_data
 from random import randint'''
 
-    TEST_CODE = '''
-n = 10000
+    TEST_CODE = f'''
+n = {n}
 number_list = prepare_data(n)
 binary_search(randint(1, n), number_list)'''
     times = timeit.repeat(setup=SETUP_CODE,
                           stmt=TEST_CODE,
                           repeat=3,
                           number=100)
-    print(f'Binary search time: {min(times)}')
+    print(f'Binary search time: {sum(times)/len(times)}')
 
 
 if __name__ == '__main__':
-    linear_time()
-    binary_time()
+    times = [1, 10, 100, 1000]
+    for time in times:
+        print(f"Wyszukiwanie dla {time} elementów:")
+        linear_time(time)
+        binary_time(time)
+        print()
