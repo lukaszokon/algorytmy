@@ -11,8 +11,19 @@ def pole_kwardratu():
     return p
 
 
+def NWD():
+    a = int(input("Wpisz liczbę a: "))
+    b = int(input("Wpisz liczbę b: "))
+    while a != b:
+        if a > b:
+            a = a - b
+        else:
+            b = b - a
+    print(a)
+
+
 def dec_to_bin():
-    d = int(input("Podaj liczbę całkowitą większa od 0: "))
+    d = int(input("Podaj liczbę całkowitą większa lub równą 0: "))
     binary_string = ""
     while d != 0:
         r = d % 2
@@ -25,4 +36,4 @@ def dec_to_bin():
 
 
 if __name__ == '__main__':
-    print(dec_to_bin())
+    NWD()
