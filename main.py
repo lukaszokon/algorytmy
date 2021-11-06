@@ -1,3 +1,8 @@
+def wpisywanie_hasla():
+    password = None
+    while password != "854":
+        password = input("Wpisz hasło: ")
+    print("Kod zaakceptowany")
 
 
 def pole_kwardratu():
@@ -7,4 +12,4 @@ def pole_kwardratu():
 
 
 if __name__ == '__main__':
-    print(pole_kwardratu())
+    wpisywanie_hasla()
