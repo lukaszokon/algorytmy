@@ -71,6 +71,23 @@ def bubble_sort_3(list_to_sort):
         m -= 1
 
 
+def insert_sort(list_to_sort):
+    n = len(list_to_sort)
+    for i in range(1, n):
+        index = i
+        while list_to_sort[index - 1] > list_to_sort[index]:
+            list_to_sort[index - 1], list_to_sort[index] = list_to_sort[index], list_to_sort[index - 1]
+            if index > 1:
+                index -= 1
+            else:
+                break
+
+
+def merge_sort(list_to_sort):
+    # TODO
+    pass
+
+
 def alghorithm_time(n, name_of_function):
     SETUP_CODE = f'''
 from random import randint
@@ -117,9 +134,14 @@ random_list, sorted_list, sorted_reversed_list, sorted_with_one_change = prepare
 
 
 if __name__ == '__main__':
-    elements = [10, 100, 1000]
-    for element in elements:
-        alghorithm_time(element, 'bubble_sort')
-        alghorithm_time(element, 'bubble_sort_1')
-        alghorithm_time(element, 'bubble_sort_2')
-        alghorithm_time(element, 'bubble_sort_3')
+    random_list, sorted_list, sorted_reversed_list, sorted_with_one_change = prepare_data(5)
+    print(random_list)
+    insert_sort(random_list)
+    print(random_list)
+    # elements = [1000, 10000]
+    # for element in elements:
+    #     alghorithm_time(element, 'bubble_sort')
+    #     alghorithm_time(element, 'bubble_sort_1')
+    # alghorithm_time(element, 'bubble_sort_2')
+    # alghorithm_time(element, 'bubble_sort_3')
+    # alghorithm_time(element, 'insert_sort')
