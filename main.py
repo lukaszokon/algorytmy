@@ -52,12 +52,30 @@ def bubble_sort_2(list_to_sort):
         m -= 1
 
 
+def bubble_sort_3(list_to_sort):
+    n = len(list_to_sort) - 1
+    m = n
+    start_index = 0
+    for sorting_round in range(n):
+        was_change = False
+        for index in range(start_index, m):
+            if list_to_sort[index] > list_to_sort[index + 1]:
+                list_to_sort[index], list_to_sort[index + 1] = list_to_sort[index + 1], list_to_sort[index]
+                if not was_change:
+                    if index > 0:
+                        start_index = index - 1
+                    was_change = True
+        if not was_change:
+            return
+        m -= 1
+
+
 if __name__ == '__main__':
     n = 5
     random_list, sorted_list, sorted_reversed_list, sorted_with_one_change = prepare_data(n)
     print(random_list, sorted_list, sorted_reversed_list, sorted_with_one_change)
-    bubble_sort_2(random_list)
-    bubble_sort_2(sorted_list)
-    bubble_sort_2(sorted_reversed_list)
-    bubble_sort_2(sorted_with_one_change)
+    bubble_sort_3(random_list)
+    bubble_sort_3(sorted_list)
+    bubble_sort_3(sorted_reversed_list)
+    bubble_sort_3(sorted_with_one_change)
     print(random_list, sorted_list, sorted_reversed_list, sorted_with_one_change)
