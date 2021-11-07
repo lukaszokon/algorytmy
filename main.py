@@ -23,9 +23,14 @@ def prepare_data(n):
 def bubble_sort(list_to_sort):
     n = len(list_to_sort)
     for sorting_round in range(n):
-        for index in range(n-1):
-            if list_to_sort[index] > list_to_sort[index+1]:
-                list_to_sort[index], list_to_sort[index+1] = list_to_sort[index+1], list_to_sort[index]
+        for index in range(n - 1):
+            if list_to_sort[index] > list_to_sort[index + 1]:
+                list_to_sort[index], list_to_sort[index + 1] = list_to_sort[index + 1], list_to_sort[index]
+
+
+def bubble_sort_1(list_to_sort):
+    # TODO
+    pass
 
 
 if __name__ == '__main__':
