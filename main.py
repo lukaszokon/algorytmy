@@ -29,16 +29,35 @@ def bubble_sort(list_to_sort):
 
 
 def bubble_sort_1(list_to_sort):
-    # TODO
-    pass
+    n = len(list_to_sort) - 1
+    m = n
+    for sorting_round in range(n):
+        for index in range(m):
+            if list_to_sort[index] > list_to_sort[index + 1]:
+                list_to_sort[index], list_to_sort[index + 1] = list_to_sort[index + 1], list_to_sort[index]
+        m -= 1
+
+
+def bubble_sort_2(list_to_sort):
+    n = len(list_to_sort) - 1
+    m = n
+    for sorting_round in range(n):
+        was_change = False
+        for index in range(m):
+            if list_to_sort[index] > list_to_sort[index + 1]:
+                list_to_sort[index], list_to_sort[index + 1] = list_to_sort[index + 1], list_to_sort[index]
+                was_change = True
+        if not was_change:
+            return
+        m -= 1
 
 
 if __name__ == '__main__':
     n = 5
     random_list, sorted_list, sorted_reversed_list, sorted_with_one_change = prepare_data(n)
     print(random_list, sorted_list, sorted_reversed_list, sorted_with_one_change)
-    bubble_sort(random_list)
-    bubble_sort(sorted_list)
-    bubble_sort(sorted_reversed_list)
-    bubble_sort(sorted_with_one_change)
+    bubble_sort_2(random_list)
+    bubble_sort_2(sorted_list)
+    bubble_sort_2(sorted_reversed_list)
+    bubble_sort_2(sorted_with_one_change)
     print(random_list, sorted_list, sorted_reversed_list, sorted_with_one_change)
