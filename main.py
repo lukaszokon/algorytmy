@@ -1,4 +1,5 @@
 from random import randint
+import timeit
 
 
 def prepare_data(n):
@@ -70,12 +71,55 @@ def bubble_sort_3(list_to_sort):
         m -= 1
 
 
+def alghorithm_time(n, name_of_function):
+    SETUP_CODE = f'''
+from random import randint
+from __main__ import {name_of_function}, prepare_data
+
+random_list, sorted_list, sorted_reversed_list, sorted_with_one_change = prepare_data({n})'''
+
+    TEST_CODE_RANDOM = f'''
+{name_of_function}(random_list)'''
+
+    TEST_CODE_SORTED = f'''
+{name_of_function}(sorted_list)'''
+
+    TEST_CODE_REVERSED = f'''
+{name_of_function}(sorted_reversed_list)'''
+
+    TEST_CODE_ONE_CHANGE = f'''
+{name_of_function}(sorted_with_one_change)'''
+    print(f'Testing function: {name_of_function} for {n} elements:')
+    times = timeit.repeat(setup=SETUP_CODE,
+                          stmt=TEST_CODE_RANDOM,
+                          repeat=3,
+                          number=100)
+    print(f'Random sorting: {sum(times) / len(times)}')
+
+    times = timeit.repeat(setup=SETUP_CODE,
+                          stmt=TEST_CODE_SORTED,
+                          repeat=3,
+                          number=100)
+    print(f'Sorted sorting: {sum(times) / len(times)}')
+
+    times = timeit.repeat(setup=SETUP_CODE,
+                          stmt=TEST_CODE_REVERSED,
+                          repeat=3,
+                          number=100)
+    print(f'Reversed sorting: {sum(times) / len(times)}')
+
+    times = timeit.repeat(setup=SETUP_CODE,
+                          stmt=TEST_CODE_ONE_CHANGE,
+                          repeat=3,
+                          number=100)
+    print(f'One-change sorting: {sum(times) / len(times)}')
+    print()
+
+
 if __name__ == '__main__':
-    n = 5
-    random_list, sorted_list, sorted_reversed_list, sorted_with_one_change = prepare_data(n)
-    print(random_list, sorted_list, sorted_reversed_list, sorted_with_one_change)
-    bubble_sort_3(random_list)
-    bubble_sort_3(sorted_list)
-    bubble_sort_3(sorted_reversed_list)
-    bubble_sort_3(sorted_with_one_change)
-    print(random_list, sorted_list, sorted_reversed_list, sorted_with_one_change)
+    elements = [10, 100, 1000]
+    for element in elements:
+        alghorithm_time(element, 'bubble_sort')
+        alghorithm_time(element, 'bubble_sort_1')
+        alghorithm_time(element, 'bubble_sort_2')
+        alghorithm_time(element, 'bubble_sort_3')
