@@ -94,22 +94,31 @@ def quick_sort_init(list_to_sort):
 
 
 def quick_sort(list_to_sort, start_index, end_index):
-
+    # Wybieranie pivota
     middle = (start_index + end_index) // 2
     pivot = list_to_sort[middle]
+
+    # Przerzucenie pivota na koniec listy
     list_to_sort[middle], list_to_sort[end_index] = list_to_sort[end_index], list_to_sort[middle]
 
+    # Przeszukiwanie indeksami i, j elementów mniejszych większych od pivota i zamiana miejsc jeśli warunek się spełni
+    #  i-ty indeks przeszukuje elementów mniejszych od pivota do przedostatniego elementu tablicy, bo tam jest nasz
+    #  pivot przerzucony
     j = start_index
     for i in range(j, end_index):
         if list_to_sort[i] < pivot:
-            list_to_sort[i], list_to_sort[j] = list_to_sort[j], list_to_sort [i]
+            list_to_sort[i], list_to_sort[j] = list_to_sort[j], list_to_sort[i]
             j += 1
+
+    # Przywrócenie pivota na poprawną pozycję w liście pod j-tym elementem (tam była ostatnia zmiana)
     list_to_sort[end_index], list_to_sort[j] = list_to_sort[j], list_to_sort[end_index]
 
+    # Wywołanie quick sort do podzielonych tablic -> pivot nie wchodzi w podział, bo znajduje się na odpowiedniej
+    # pozycji, mniejsze są po lewej stronie, większe po prawej
     if start_index < j - 1:
-        quick_sort(list_to_sort, start_index, j-1)
+        quick_sort(list_to_sort, start_index, j - 1)
     if j + 1 < end_index:
-        quick_sort(list_to_sort, j+1, end_index)
+        quick_sort(list_to_sort, j + 1, end_index)
 
 
 def select_sort(list_to_sort):
