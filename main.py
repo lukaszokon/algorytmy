@@ -88,6 +88,14 @@ def merge_sort(list_to_sort):
     pass
 
 
+def select_sort(list_to_sort):
+    n = len(list_to_sort)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if list_to_sort[i] > list_to_sort[j]:
+                list_to_sort[i], list_to_sort[j] = list_to_sort[j], list_to_sort[i]
+
+
 def alghorithm_time(n, name_of_function):
     SETUP_CODE = f'''
 from random import randint
@@ -134,14 +142,16 @@ random_list, sorted_list, sorted_reversed_list, sorted_with_one_change = prepare
 
 
 if __name__ == '__main__':
-    random_list, sorted_list, sorted_reversed_list, sorted_with_one_change = prepare_data(5)
-    print(random_list)
-    insert_sort(random_list)
-    print(random_list)
-    # elements = [1000, 10000]
-    # for element in elements:
+    # random_list, sorted_list, sorted_reversed_list, sorted_with_one_change = prepare_data(5)
+    # print(random_list)
+    # select_sort(random_list)
+    # print(random_list)
+    elements = [1000, 10000]
+    for element in elements:
     #     alghorithm_time(element, 'bubble_sort')
     #     alghorithm_time(element, 'bubble_sort_1')
-    # alghorithm_time(element, 'bubble_sort_2')
-    # alghorithm_time(element, 'bubble_sort_3')
-    # alghorithm_time(element, 'insert_sort')
+        alghorithm_time(element, 'bubble_sort_2')
+        alghorithm_time(element, 'bubble_sort_3')
+        alghorithm_time(element, 'insert_sort')
+        alghorithm_time(element, 'select_sort')
+
