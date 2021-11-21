@@ -59,6 +59,7 @@ class Mylist:
         iterator = self._head
         if iterator.value == value:
             self._head = iterator.next
+            self._head.prev = None
             return 0
         while iterator.next and iterator.next.value != value:
             iterator = iterator.next
@@ -68,7 +69,14 @@ class Mylist:
         else:
             if iterator.next == self._tail:
                 self._tail = iterator
-            iterator.next = iterator.next.next
+                self._tail.next = None
+            else:
+                usuwany_element = iterator.next
+                element_przed_usuwanym = iterator
+                element_za_usuwanym = usuwany_element.next
+
+                element_przed_usuwanym.next = element_za_usuwanym
+                element_za_usuwanym.prev = element_przed_usuwanym
             return 0
 
 
@@ -105,11 +113,13 @@ if __name__ == '__main__':
     for i in range(5):
         print(i + 1)
         my_list.append(i + 1)
+    # print(my_list)
+    # print(my_list.delete())
 
-    # my_list.remove(4)
-    # my_list.remove(1)
-    # my_list.remove(5)
-    # print()
+    my_list.remove(4)
+    my_list.remove(1)
+    my_list.remove(5)
+    print()
 
     # for i in range(5):
     #     print(queue.delete())
