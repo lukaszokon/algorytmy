@@ -27,30 +27,33 @@ class Queue:
 
 
 class Mylist:
-
     class _Element:
 
-        def __init__(self, value, next):
+        def __init__(self, value, next, prev):
             self.value = value
             self.next = next
+            self.prev = prev
 
     def __init__(self):
         self._head = None
         self._tail = None
 
     def append(self, value):
-        new_element = self._Element(value, None)
+        new_element = self._Element(value, None, None)
         if not self._head:
             self._head = new_element
             self._tail = new_element
         else:
+            new_element.prev = self._tail
             self._tail.next = new_element
             self._tail = new_element
 
     def delete(self):
-        element = self._head
-        self._head = element.next
-        return element.value
+        deleting_element = self._head
+        new_head = deleting_element.next
+        new_head.prev = None
+        self._head = new_head
+        return deleting_element.value
 
     def remove(self, value):
         iterator = self._head
@@ -103,10 +106,10 @@ if __name__ == '__main__':
         print(i + 1)
         my_list.append(i + 1)
 
-    my_list.remove(4)
-    my_list.remove(1)
-    my_list.remove(5)
-    print()
+    # my_list.remove(4)
+    # my_list.remove(1)
+    # my_list.remove(5)
+    # print()
 
     # for i in range(5):
     #     print(queue.delete())
