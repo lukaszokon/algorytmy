@@ -129,10 +129,22 @@ def select_sort(list_to_sort):
                 list_to_sort[i], list_to_sort[j] = list_to_sort[j], list_to_sort[i]
 
 
+def timsort(list_to_sort):
+    return sorted(list_to_sort)
+
+
+def heap_sort(list_to_sort):
+    from heapq import heappop, heappush
+    my_heap = []
+    for value in list_to_sort:
+        heappush(my_heap, value)
+    return [heappop(my_heap) for i in range(len(my_heap))]
+
+
 def alghorithm_time(n, name_of_function):
     SETUP_CODE = f'''
 from random import randint
-from __main__ import {name_of_function}, prepare_data
+from sorting import {name_of_function}, prepare_data
 
 random_list, sorted_list, sorted_reversed_list, sorted_with_one_change = prepare_data({n})'''
 

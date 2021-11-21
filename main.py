@@ -104,22 +104,12 @@ class Stack:
         self._last = self._last.prev
         return element.value
 
-
-from collections import deque
+import sorting
 
 if __name__ == '__main__':
+    elements = [1000, 2000, 4000, 10000]
+    for element in elements:
+        sorting.alghorithm_time(element, 'timsort')
+        sorting.alghorithm_time(element, 'heap_sort')
+        sorting.alghorithm_time(element, 'quick_sort_init')
 
-    my_list = Mylist()
-    for i in range(5):
-        print(i + 1)
-        my_list.append(i + 1)
-    # print(my_list)
-    # print(my_list.delete())
-
-    my_list.remove(4)
-    my_list.remove(1)
-    my_list.remove(5)
-    print()
-
-    # for i in range(5):
-    #     print(queue.delete())
