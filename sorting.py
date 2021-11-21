@@ -5,7 +5,7 @@ import timeit
 def prepare_data(n):
     random_list = []
     for i in range(n):
-        random_list.append(randint(1, n * 100))
+        random_list.append(randint(1, n))
     sorted_list = sorted(random_list)
     sorted_reversed_list = sorted_list[::-1]
     sorted_with_one_change = sorted_list.copy()
@@ -62,6 +62,7 @@ def bubble_sort_3(list_to_sort):
         for index in range(start_index, m):
             if list_to_sort[index] > list_to_sort[index + 1]:
                 list_to_sort[index], list_to_sort[index + 1] = list_to_sort[index + 1], list_to_sort[index]
+                yield list_to_sort
                 if not was_change:
                     if index > 0:
                         start_index = index - 1
@@ -108,6 +109,7 @@ def quick_sort(list_to_sort, start_index, end_index):
     for i in range(j, end_index):
         if list_to_sort[i] < pivot:
             list_to_sort[i], list_to_sort[j] = list_to_sort[j], list_to_sort[i]
+            yield list_to_sort
             j += 1
 
     # Przywrócenie pivota na poprawną pozycję w liście pod j-tym elementem (tam była ostatnia zmiana)
@@ -127,6 +129,7 @@ def select_sort(list_to_sort):
         for j in range(i + 1, n):
             if list_to_sort[i] > list_to_sort[j]:
                 list_to_sort[i], list_to_sort[j] = list_to_sort[j], list_to_sort[i]
+                yield list_to_sort
 
 
 def timsort(list_to_sort):
