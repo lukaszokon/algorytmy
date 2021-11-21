@@ -104,11 +104,11 @@ class Stack:
         self._last = self._last.prev
         return element.value
 
-from animation import init
+from animation import init, visualize_tests
+import sorting
 
 if __name__ == '__main__':
-    init(200)
-
+    visualize_tests()
     # elements = [1000, 2000, 4000, 10000]
     # for element in elements:
     #     sorting.alghorithm_time(element, 'timsort')

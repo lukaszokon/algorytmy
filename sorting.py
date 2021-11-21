@@ -62,7 +62,6 @@ def bubble_sort_3(list_to_sort):
         for index in range(start_index, m):
             if list_to_sort[index] > list_to_sort[index + 1]:
                 list_to_sort[index], list_to_sort[index + 1] = list_to_sort[index + 1], list_to_sort[index]
-                yield list_to_sort
                 if not was_change:
                     if index > 0:
                         start_index = index - 1
@@ -109,7 +108,6 @@ def quick_sort(list_to_sort, start_index, end_index):
     for i in range(j, end_index):
         if list_to_sort[i] < pivot:
             list_to_sort[i], list_to_sort[j] = list_to_sort[j], list_to_sort[i]
-            yield list_to_sort
             j += 1
 
     # Przywrócenie pivota na poprawną pozycję w liście pod j-tym elementem (tam była ostatnia zmiana)
@@ -129,7 +127,6 @@ def select_sort(list_to_sort):
         for j in range(i + 1, n):
             if list_to_sort[i] > list_to_sort[j]:
                 list_to_sort[i], list_to_sort[j] = list_to_sort[j], list_to_sort[i]
-                yield list_to_sort
 
 
 def timsort(list_to_sort):
@@ -142,6 +139,22 @@ def heap_sort(list_to_sort):
     for value in list_to_sort:
         heappush(my_heap, value)
     return [heappop(my_heap) for i in range(len(my_heap))]
+
+
+def random_sorting_alghorithm_time(n, name_of_function):
+    SETUP_CODE = f'''
+from random import randint
+from sorting import {name_of_function}, prepare_data
+
+random_list, sorted_list, sorted_reversed_list, sorted_with_one_change = prepare_data({n})'''
+
+    TEST_CODE_RANDOM = f'''
+{name_of_function}(random_list)'''
+    times = timeit.repeat(setup=SETUP_CODE,
+                          stmt=TEST_CODE_RANDOM,
+                          repeat=3,
+                          number=100)
+    return sum(times) / len(times)
 
 
 def alghorithm_time(n, name_of_function):
